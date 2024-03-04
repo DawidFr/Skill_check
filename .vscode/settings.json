@@ -56,5 +56,46 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "GoMobile.sln"
+    "dotnet.defaultSolution": "GoMobile.sln",
+    "saveEditorLayout.list": [
+        {
+            "name": "Stats manipulation",
+            "documents": [
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
+                    "column": 1,
+                    "pinned": false
+                },
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/ScriptableObjects/Player/Player_BaseStats.cs",
+                    "column": 2,
+                    "pinned": false
+                },
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
+                    "column": 3,
+                    "pinned": false
+                }
+            ],
+            "layout": {
+                "orientation": 0,
+                "groups": [
+                    {
+                        "size": 1043,
+                        "groups": [
+                            {
+                                "size": 616
+                            },
+                            {
+                                "size": 616
+                            }
+                        ]
+                    },
+                    {
+                        "size": 1043
+                    }
+                ]
+            }
+        }
+    ]
 }

@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Player_Movement_Single : MonoBehaviour
 {
-[SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
-    [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
-    [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 25f;
-    [SerializeField, Range(0f, 100f)] private float jumpHeight = 3f;
-    [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
-    [SerializeField, Range(0f, 15f)] private float downwardMovement = 3f;
-    [SerializeField, Range(0f, 15f)] private float upwardMovement = 1.7f;
-
-
+    #region localStats
+    private float local_maxSpeed = 4f;
+    private float local_maxAcceleration = 35f;
+    private float local_maxAirAcceleration = 25f;
+    private float local_jumpHeight = 3f;
+    private int local_maxAirJumps = 0;
+    private float local_fallingGravity = 3f;
+    private float local_jumpingGravity = 1.7f;
+    
+    #endregion
     private int jumpPhase;
     private float defaultGravityScale;
     private Vector2 direction;
@@ -20,18 +23,57 @@ public class Player_Movement_Single : MonoBehaviour
     private Vector2 velocity;
     private Rigidbody2D rgb;
     private Ground ground;
+    
 
     private bool desiredJump;
     private float maxSpeedChange;
     private float acceleration;
     private bool onGround;
+    private Player_Stats p_Stats;
 
 
-    private void Awake()
-    {
+    private void Awake(){
+        p_Stats = GetComponent<Player_Stats>();
+        UpdateStats();
+        SubscribeToStatsChanges();
+        
         defaultGravityScale = 1f;
         Awake_GetComponent();
     }
+    
+    private void SubscribeToStatsChanges()
+    {
+        p_Stats.maxSpeed.OnStatValueChanged += UpdateHorizontalValue;
+        p_Stats.maxAcceleration.OnStatValueChanged += UpdateHorizontalValue;
+        p_Stats.maxAirAcceleration.OnStatValueChanged += UpdateHorizontalValue;
+        p_Stats.jumpHeight.OnStatValueChanged += UpdateVerticalValue;
+        p_Stats.maxAirJumps.OnStatValueChanged += UpdateVerticalValue;
+        p_Stats.fallingGravity.OnStatValueChanged += UpdateVerticalValue;
+        p_Stats.jumpingGravity.OnStatValueChanged += UpdateVerticalValue;
+    }
+
+    private void UpdateStats()
+    {
+        UpdateHorizontalValue();
+        UpdateVerticalValue();
+    }
+
+    private void UpdateVerticalValue()
+    {
+        local_jumpHeight = p_Stats.jumpHeight.GetValue();
+        local_fallingGravity = p_Stats.fallingGravity.GetValue();
+        local_jumpingGravity = p_Stats.jumpingGravity.GetValue();
+        local_maxAirJumps = (int)MathF.Round(p_Stats.maxAirJumps.GetValue(), 0);
+
+    }
+
+    private void UpdateHorizontalValue()
+    {
+        local_maxAcceleration = p_Stats.maxAcceleration.GetValue();
+        local_maxAirAcceleration = p_Stats.maxAirAcceleration.GetValue();
+        local_maxSpeed = p_Stats.maxSpeed.GetValue();
+    }
+
     private void Update()
     {
         desiredJump |= Input.GetKeyDown(KeyCode.W);
@@ -48,7 +90,7 @@ public class Player_Movement_Single : MonoBehaviour
         onGround = ground.GetOnGround();
         velocity = rgb.velocity;
 
-        acceleration = onGround ? maxAcceleration : maxAirAcceleration;
+        acceleration = onGround ? local_maxAcceleration : local_maxAirAcceleration;
         maxSpeedChange = acceleration * Time.deltaTime;
         velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
 
@@ -56,13 +98,13 @@ public class Player_Movement_Single : MonoBehaviour
         {
             jumpPhase = 0;
         }
-        if (desiredJump)
+        if (canJump)
         {
             desiredJump = false;
             JumpAction();
         }
-        if (rgb.velocity.y > 0) rgb.gravityScale = upwardMovement;
-        else if (rgb.velocity.y < 0) rgb.gravityScale = downwardMovement;
+        if (rgb.velocity.y > 0) rgb.gravityScale = local_jumpingGravity;
+        else if (rgb.velocity.y < 0) rgb.gravityScale = local_fallingGravity;
         else rgb.gravityScale = defaultGravityScale;
         rgb.velocity = velocity;
     }
@@ -71,7 +113,7 @@ public class Player_Movement_Single : MonoBehaviour
     {
 
         direction.x = Input.GetAxisRaw("Horizontal");
-        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((maxSpeed - ground.GetFriction()), 0f);
+        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((local_maxSpeed - ground.GetFriction()), 0f);
     }
     private void FixedUpdate_Moving()
     {
@@ -79,10 +121,10 @@ public class Player_Movement_Single : MonoBehaviour
     }
     private void JumpAction()
     {
-        if (onGround || jumpPhase < maxAirJumps)
+        if (onGround || jumpPhase < local_maxAirJumps)
         {
             jumpPhase += 1;
-            float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+            float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * local_jumpHeight);
             if (velocity.y > 0)
             {
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
