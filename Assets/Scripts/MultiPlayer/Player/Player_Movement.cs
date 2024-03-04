@@ -131,7 +131,7 @@ public class Player_Movement : NetworkBehaviour
     }*/
 
     void Move(float inputVector, bool canJump){
-        onGround = ground.GetOnGround();
+        onGround = ground.OnGround;
         velocity = rgb.velocity;
 
         acceleration = onGround ? maxAcceleration : maxAirAcceleration;
@@ -154,7 +154,7 @@ public class Player_Movement : NetworkBehaviour
     private void Update_Moving(){
 
         direction.x = Input.GetAxisRaw("Horizontal");
-        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((maxSpeed - ground.GetFriction()), 0f);
+        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((maxSpeed - ground.Friction), 0f);
     }
     private void FixedUpdate_Moving(){
         Move(direction.x, desiredJump);

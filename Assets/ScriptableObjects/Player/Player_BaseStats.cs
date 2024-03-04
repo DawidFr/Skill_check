@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Player_BaseStats", menuName = "Player/Player_BaseStats")]
-public class Player_BaseStats : ScriptableObject {
+[CreateAssetMenu(fileName = "Player_MobilityStats", menuName = "Player/Player_MobilityStats")]
+public class Player_MobilityStats : ScriptableObject {
 
     [Header("Horizontal movement")]
     public float maxSpeed;

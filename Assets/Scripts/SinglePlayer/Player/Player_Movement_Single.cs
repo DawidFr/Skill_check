@@ -29,10 +29,11 @@ public class Player_Movement_Single : MonoBehaviour
     private float maxSpeedChange;
     private float acceleration;
     private bool onGround;
-    private Player_Stats p_Stats;
-
-
-    private void Awake(){
+    [SerializeField] private Player_Stats p_Stats;
+    private bool lookRight;
+    private Player_Animations animmer;
+    private void Start(){
+        animmer = GetComponent<Player_Animations>();
         p_Stats = GetComponent<Player_Stats>();
         UpdateStats();
         SubscribeToStatsChanges();
@@ -85,9 +86,9 @@ public class Player_Movement_Single : MonoBehaviour
 
     }
 
-    void Move(float inputVector, bool canJump)
+    void Move()
     {
-        onGround = ground.GetOnGround();
+        onGround = ground.OnGround;
         velocity = rgb.velocity;
 
         acceleration = onGround ? local_maxAcceleration : local_maxAirAcceleration;
@@ -98,10 +99,10 @@ public class Player_Movement_Single : MonoBehaviour
         {
             jumpPhase = 0;
         }
-        if (canJump)
+        if (desiredJump)
         {
             desiredJump = false;
-            JumpAction();
+            Jump();
         }
         if (rgb.velocity.y > 0) rgb.gravityScale = local_jumpingGravity;
         else if (rgb.velocity.y < 0) rgb.gravityScale = local_fallingGravity;
@@ -113,21 +114,49 @@ public class Player_Movement_Single : MonoBehaviour
     {
 
         direction.x = Input.GetAxisRaw("Horizontal");
-        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((local_maxSpeed - ground.GetFriction()), 0f);
+        if (direction.x != 0){
+            animmer.PlayAnimation(Player_Animations.AnimationState.running);
+            if ((direction.x > 0) != lookRight)
+            {
+                if (lookRight)
+                {
+                    transform.rotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), new Vector3(-1, 0, 0));
+                    lookRight = false;
+                    //Debug.Log("Left");
+
+                }
+                else
+                {
+                    transform.rotation = Quaternion.identity;
+                    lookRight = true;
+                    // Debug.Log("Right");
+
+                }
+            }
+        }
+        else{
+            animmer.PlayAnimation(Player_Animations.AnimationState.idle);
+
+        }
+        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max((local_maxSpeed - ground.Friction), 0f);
     }
     private void FixedUpdate_Moving()
     {
-        Move(direction.x, desiredJump);
+        Move();
     }
-    private void JumpAction()
+    private void Jump()
     {
         if (onGround || jumpPhase < local_maxAirJumps)
         {
+            animmer.PlayAnimation(Player_Animations.AnimationState.jumping, false);
             jumpPhase += 1;
             float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * local_jumpHeight);
             if (velocity.y > 0)
             {
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+            }
+            else if(velocity.y < 0){
+                jumpSpeed += Mathf.Abs(rgb.velocity.y);
             }
             velocity.y += jumpSpeed;
         }

@@ -96,6 +96,42 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "animations",
+            "documents": [
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Animations.cs",
+                    "column": 1,
+                    "pinned": false
+                },
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
+                    "column": 1,
+                    "pinned": false
+                },
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Ground.cs",
+                    "column": 1,
+                    "pinned": false
+                },
+                {
+                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
+                    "column": 2,
+                    "pinned": false
+                }
+            ],
+            "layout": {
+                "orientation": 0,
+                "groups": [
+                    {
+                        "size": 973
+                    },
+                    {
+                        "size": 974
+                    }
+                ]
+            }
         }
     ]
 }
