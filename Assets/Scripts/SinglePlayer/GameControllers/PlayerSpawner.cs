@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     public Vector3 spawnPointPos;
-    private void Start()
-    {
+    private void Start(){
         Instantiate(GameAssets.I.playerAssets, spawnPointPos, Quaternion.identity);
     }
 }

@@ -133,5 +133,6 @@
                 ]
             }
         }
-    ]
+    ],
+    "prisma.fileWatcher": true
 }
