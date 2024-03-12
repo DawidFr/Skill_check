@@ -134,5 +134,14 @@
             }
         }
     ],
-    "prisma.fileWatcher": true
+    "prisma.fileWatcher": true,
+    "todo-tree.tree.showBadges": false,
+    "cSpell.words": [
+        "equipable",
+        "Handable",
+        "Raycasts",
+        "Scriptable",
+        "Stackable",
+        "UGUI"
+    ]
 }
