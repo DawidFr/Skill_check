@@ -1,147 +1,180 @@
 {
-    "files.exclude": {
-        "**/.DS_Store": true,
-        "**/.git": true,
-        "**/.vs": true,
-        "**/.gitmodules": true,
-        "**/.vsconfig": true,
-        "**/*.booproj": true,
-        "**/*.pidb": true,
-        "**/*.suo": true,
-        "**/*.user": true,
-        "**/*.userprefs": true,
-        "**/*.unityproj": true,
-        "**/*.dll": true,
-        "**/*.exe": true,
-        "**/*.pdf": true,
-        "**/*.mid": true,
-        "**/*.midi": true,
-        "**/*.wav": true,
-        "**/*.gif": true,
-        "**/*.ico": true,
-        "**/*.jpg": true,
-        "**/*.jpeg": true,
-        "**/*.png": true,
-        "**/*.psd": true,
-        "**/*.tga": true,
-        "**/*.tif": true,
-        "**/*.tiff": true,
-        "**/*.3ds": true,
-        "**/*.3DS": true,
-        "**/*.fbx": true,
-        "**/*.FBX": true,
-        "**/*.lxo": true,
-        "**/*.LXO": true,
-        "**/*.ma": true,
-        "**/*.MA": true,
-        "**/*.obj": true,
-        "**/*.OBJ": true,
-        "**/*.asset": true,
-        "**/*.cubemap": true,
-        "**/*.flare": true,
-        "**/*.mat": true,
-        "**/*.meta": true,
-        "**/*.prefab": true,
-        "**/*.unity": true,
-        "build/": true,
-        "Build/": true,
-        "Library/": true,
-        "library/": true,
-        "obj/": true,
-        "Obj/": true,
-        "Logs/": true,
-        "logs/": true,
-        "ProjectSettings/": true,
-        "UserSettings/": true,
-        "temp/": true,
-        "Temp/": true
-    },
-    "dotnet.defaultSolution": "GoMobile.sln",
-    "saveEditorLayout.list": [
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.vs": true,
+    "**/.gitmodules": true,
+    "**/.vsconfig": true,
+    "**/*.booproj": true,
+    "**/*.pidb": true,
+    "**/*.suo": true,
+    "**/*.user": true,
+    "**/*.userprefs": true,
+    "**/*.unityproj": true,
+    "**/*.dll": true,
+    "**/*.exe": true,
+    "**/*.pdf": true,
+    "**/*.mid": true,
+    "**/*.midi": true,
+    "**/*.wav": true,
+    "**/*.gif": true,
+    "**/*.ico": true,
+    "**/*.jpg": true,
+    "**/*.jpeg": true,
+    "**/*.png": true,
+    "**/*.psd": true,
+    "**/*.tga": true,
+    "**/*.tif": true,
+    "**/*.tiff": true,
+    "**/*.3ds": true,
+    "**/*.3DS": true,
+    "**/*.fbx": true,
+    "**/*.FBX": true,
+    "**/*.lxo": true,
+    "**/*.LXO": true,
+    "**/*.ma": true,
+    "**/*.MA": true,
+    "**/*.obj": true,
+    "**/*.OBJ": true,
+    "**/*.asset": true,
+    "**/*.cubemap": true,
+    "**/*.flare": true,
+    "**/*.mat": true,
+    "**/*.meta": true,
+    "**/*.prefab": true,
+    "**/*.unity": true,
+    "build/": true,
+    "Build/": true,
+    "Library/": true,
+    "library/": true,
+    "obj/": true,
+    "Obj/": true,
+    "Logs/": true,
+    "logs/": true,
+    "ProjectSettings/": true,
+    "UserSettings/": true,
+    "temp/": true,
+    "Temp/": true
+  },
+  "dotnet.defaultSolution": "GoMobile.sln",
+  "saveEditorLayout.list": [
+    {
+      "name": "Stats manipulation",
+      "documents": [
         {
-            "name": "Stats manipulation",
-            "documents": [
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
-                    "column": 1,
-                    "pinned": false
-                },
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/ScriptableObjects/Player/Player_BaseStats.cs",
-                    "column": 2,
-                    "pinned": false
-                },
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
-                    "column": 3,
-                    "pinned": false
-                }
-            ],
-            "layout": {
-                "orientation": 0,
-                "groups": [
-                    {
-                        "size": 1043,
-                        "groups": [
-                            {
-                                "size": 616
-                            },
-                            {
-                                "size": 616
-                            }
-                        ]
-                    },
-                    {
-                        "size": 1043
-                    }
-                ]
-            }
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
+          "column": 1,
+          "pinned": false
         },
         {
-            "name": "animations",
-            "documents": [
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Animations.cs",
-                    "column": 1,
-                    "pinned": false
-                },
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
-                    "column": 1,
-                    "pinned": false
-                },
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Ground.cs",
-                    "column": 1,
-                    "pinned": false
-                },
-                {
-                    "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
-                    "column": 2,
-                    "pinned": false
-                }
-            ],
-            "layout": {
-                "orientation": 0,
-                "groups": [
-                    {
-                        "size": 973
-                    },
-                    {
-                        "size": 974
-                    }
-                ]
-            }
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/ScriptableObjects/Player/Player_BaseStats.cs",
+          "column": 2,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
+          "column": 3,
+          "pinned": false
         }
-    ],
-    "prisma.fileWatcher": true,
-    "todo-tree.tree.showBadges": false,
-    "cSpell.words": [
-        "equipable",
-        "Handable",
-        "Raycasts",
-        "Scriptable",
-        "Stackable",
-        "UGUI"
-    ]
+      ],
+      "layout": {
+        "orientation": 0,
+        "groups": [
+          {
+            "size": 1043,
+            "groups": [
+              {
+                "size": 616
+              },
+              {
+                "size": 616
+              }
+            ]
+          },
+          {
+            "size": 1043
+          }
+        ]
+      }
+    },
+    {
+      "name": "animations",
+      "documents": [
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Animations.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Stats.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Ground.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_Movement_Single.cs",
+          "column": 2,
+          "pinned": false
+        }
+      ],
+      "layout": {
+        "orientation": 0,
+        "groups": [
+          {
+            "size": 973
+          },
+          {
+            "size": 974
+          }
+        ]
+      }
+    },
+    {
+      "name": "today group",
+      "documents": [
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/DraggableSlot.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/Classes/Inventory.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/InventorySlot.cs",
+          "column": 2,
+          "pinned": false
+        }
+      ],
+      "layout": {
+        "orientation": 0,
+        "groups": [
+          {
+            "size": 1429
+          },
+          {
+            "size": 518
+          }
+        ]
+      }
+    }
+  ],
+  "todo-tree.tree.showBadges": false,
+  "cSpell.words": [
+    "Cinemachine",
+    "equipable",
+    "Handable",
+    "Raycasts",
+    "Scriptable",
+    "sqrtt",
+    "Stackable",
+    "UGUI"
+  ]
+
 }

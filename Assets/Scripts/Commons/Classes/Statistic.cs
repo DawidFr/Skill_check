@@ -49,12 +49,12 @@ public class Statistic
         if (modifier != 0) modifiers.Remove(modifier);
         InvokeOnChangeAction();
     }
-    public void AddMultipliers(float multiplier)
+    public void AddMultiplier(float multiplier)
     {
         if (multiplier != 0) multipliers.Add(multiplier);
         InvokeOnChangeAction();
     }
-    public void RemoveMultipliers(float multiplier)
+    public void RemoveMultiplier(float multiplier)
     {
         if (multiplier != 0) multipliers.Remove(multiplier);
         InvokeOnChangeAction();

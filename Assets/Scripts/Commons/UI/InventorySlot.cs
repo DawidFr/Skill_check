@@ -1,110 +1,156 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class InventorySlot : MonoBehaviour
 {
-    public Item item;
-    private Image icon;
-    private bool isEmpty;
-    //private int itAmount;
-    public TextMeshProUGUI AmountTxt;
-    public GameObject ImagePF;
-    public GameObject image;
+    public Inventory inventory;
+    public DraggableSlot itemSlotPF;
+    public string itemInSlotID;
+    public DraggableSlot dSlot;
+    public bool isItemStackable;
+    public int amount;
+    public int maxStack;
 
-    public void SetActive(Item newItem)
+    public bool isEmpty;
+
+    public void Setup(Inventory inv)
     {
-        item = newItem;
-        image = Instantiate(ImagePF, transform);
-        icon = image.GetComponent<Image>();
-        AmountTxt = image.GetComponentInChildren<TextMeshProUGUI>();
-        image.GetComponent<DragDropHandler>().SetSlot(this);
-
-        //itAmount = item.amount;
-        icon.sprite = item.itemBase.itemSprite;
-        icon.enabled = true;
-        Debug.Log("Item added");
-        isEmpty = false;
-
-        if (item.amount > 1)
-        {
-            AmountTxt.enabled = true;
-            AmountTxt.text = item.amount.ToString();
-        }
+        inventory = inv;
+        isEmpty = true;
     }
-    public void AddItemAmount(int amount)
+    public void AddItem(Item item)
     {
-        int itemAmount = item.amount + amount;
-        item.amount = itemAmount;
-        AmountTxt.text = itemAmount.ToString();
-        AmountTxt.enabled = true;
+        dSlot = Instantiate(itemSlotPF, this.transform).GetComponent<DraggableSlot>();
+        dSlot.Setup(item, this);
+        itemInSlotID = item.ID;
+        isItemStackable = item.itemBase.isStackable;
+        maxStack = item.maxStack;
+
     }
-    public bool TakeItemAmount(int amount)
+    public void AddItemAmount(int a, out int overStackAmount)
     {
-        Debug.Log(GetItemInSlotAmount());
-        int itemAmount = item.amount - amount;
-        if (itemAmount > 0)
+        if (!isItemStackable)
         {
-            item.amount = itemAmount;
-            AmountTxt.text = itemAmount.ToString();
-            AmountTxt.enabled = true;
+            overStackAmount = a;
+            return;
         }
-        else if (itemAmount == 0)
+
+        int control = amount + a;
+        if (control > maxStack)
         {
-            DesActive();
+            overStackAmount = control - maxStack;
+            amount = maxStack;
         }
         else
         {
-            return false;
-
+            amount += a;
+            overStackAmount = 0;
         }
-        return true;
+        inventory.GetItemList().Find(dSlot.currentItem).amount = amount;
+
+        dSlot.UpdateAmount();
 
     }
-    public int GetItemInSlotAmount()
+    public void RemoveItemAmount(int a, out int additionalAmount)
     {
-        return item.amount;
-
-    }
-    public void DesActive()
-    {
-        item = null;
-        Destroy(image);
-        //icon.sprite = null;
-        //Debug.Log(transform.name + " was desalted");
-        //icon.enabled = false;
-        isEmpty = true;
-        //AmountTxt.enabled = false;
-
-
-    }
-    public bool IsEmpty()
-    {
-        return isEmpty;
-    }
-    public Item GetItem()
-    {
-        return item;
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
+        int control = amount - a;
+        if (control < 0)
         {
-
-
-            if (isEmpty)
-            {
-                DragDropHandler it = eventData.pointerDrag.GetComponent<DragDropHandler>();
-                SetActive(it.GetDropItem());
-                Debug.Log("Drop");
-                it.SetSlotAsDesAct();
-                // eventData.pointerDrag.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position; 
-
-            }
+            RemoveItem();
+            additionalAmount = -(amount - a);
+        }
+        else if (control == 0)
+        {
+            additionalAmount = 0;
+            RemoveItem();
+        }
+        else
+        {
+            additionalAmount = 0;
+            amount -= a;
+            dSlot.UpdateAmount();
         }
     }
-    
+
+    private void RemoveItem()
+    {
+        //TODO remove Item;
+    }
+
+    public void RefreshItemAmount(int amount)
+    {
+        //TODO refresh inventory amount
+        throw new NotImplementedException();
+    }
 }
+//              For SEBASTIAN
+
+
+// public static class ConsumableItemFunctions{
+
+// 	public enum ItemType{
+// 		healthPotion,
+// 		manaPotion,
+// 		staminaPotion
+// 	}
+//     public static void UseItem(ItemType type)
+//     {
+//         switch (type) { 
+
+//             case ItemType.healthPotion : {
+//                 UseHealthPotion();
+//                 break;
+//             }
+//             case ItemType.manaPotion : {
+//                 UseManaPotion();
+//                 break;
+//             }
+//             case ItemType.staminaPotion : {
+//                 UseStaminaPotion();
+//                 break;
+//             }
+//             default : break;
+
+//         }
+
+//     }
+// 	public static void UseHealthPotion(){
+// 		//code
+// 	}
+// 	public static void UseManaPotion(){
+// 		//code
+// 	}
+// 	public static void UseStaminaPotion(){
+// 		//code
+// 	}	
+// }
+// class Example
+// {
+//     int x;
+//     int twiceX;
+//     public int Sqrt(int v)
+//     {
+//         return v * v;
+//     }
+//     public void Sqrtt(int v, out int value)
+//     {
+//         value = v * v;
+//     }
+//     public void Sqrtt(int v, out int value, out int twiceValue)
+//     {
+//         value = v * v;
+//         twiceValue = value * 2;
+//     }
+
+//     void Test()
+//     {
+//         x = Sqrt(x);
+//         Sqrtt(x, out x);
+//         Sqrtt(x, out x, out twiceX);
+//     }
+// }

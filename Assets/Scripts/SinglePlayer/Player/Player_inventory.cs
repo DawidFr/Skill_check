@@ -9,11 +9,17 @@ public class Player_inventory : MonoBehaviour
     public Inventory_UI inventory_UI;
 
     public ItemBaseSO testItem;
-    private void Start(){
+    public ItemBaseSO secondTestItem;
+    private void Start()
+    {
         inventory = new(inventory_UI);
         inventory_UI.SetInventory(inventory);
         inventory_UI.onEquipmentChange += RefreshStat;
         Item item = new(testItem, 3);
+        inventory.AddItem(item);
+        inventory.AddItem(item);
+        inventory.AddItem(item);
+        item = new(secondTestItem, 1);
         inventory.AddItem(item);
     }
 

@@ -1,14 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Inventory {
+public class Inventory
+{
+    public int inventorySize;
     public List<Item> itemList;
     public Inventory_UI inventoryUI;
-    public Inventory(Inventory_UI inv){
-        itemList ??= new();
+    public Inventory(Inventory_UI inv, int invSize) //Inventory setup
+    {
+        itemList ??= new();     //this is if(itemList == null){ itemList = new List<Item>()} but written like a pro;
         inventoryUI = inv;
+        inventorySize = invSize;
     }
+    /*
     public bool AddItem(Item item)
     {
         if (itemList != null)
@@ -20,10 +29,10 @@ public class Inventory {
             }
         }
         else Debug.Log("List == null");
-        
+
         bool noSlotWithItem = false;
-        
         InventorySlot slot;
+
         if (item.itemBase.isStackable)
         {
 
@@ -112,9 +121,9 @@ public class Inventory {
     }
     public int GetItemAmount(Item item)
     {
-        foreach (Item itemInInventory in itemList)
+        foreach (Item it in itemList)
         {
-            if (itemInInventory.itemBase.itemID == item.itemBase.itemID) return itemInInventory.amount;
+            if (it.itemBase.itemID == item.itemBase.itemID) return it.amount;
         }
         return 0;
     }
@@ -155,6 +164,121 @@ public class Inventory {
             if (slot.GetItem().itemBase.itemID == item.itemBase.itemID) return slot.GetItemInSlotAmount();
         }
         return 0;
+    }
+    */
+
+    //!! 
+    //TODO You ended her, there is a lot to do
+    //!!
+    public bool AddItem(Item item, bool stackWithOther = true)
+    {
+        if (itemList.Count == inventorySize) return false;
+        if (!item.itemBase.isStackable && !stackWithOther)
+        {
+            FindEmptySlot().AddItem(item);
+            itemList.Add(item);
+            return true;
+        }
+        int amountToAdd = item.amount;
+        int amountLeft;
+        foreach (Item it in itemList)
+        {
+            if (it == item)
+            {
+                if (it.amount != it.maxStack)
+                {
+
+                    it.amount = CheckAmountToAdd(it, amountToAdd, out int aLeft);
+                    InventorySlot slot = FindSlotWIthItem(it);
+                    slot.RefreshItemAmount(it.amount);
+                    amountLeft = aLeft;
+                    if (amountLeft == 0) break;
+                }
+            }
+        }
+        return true;
+    }
+
+    private InventorySlot FindEmptySlot()
+    {
+        foreach (InventorySlot invSlot in inventoryUI.slots)
+        {
+            if (invSlot.isEmpty) return invSlot;
+        }
+        return null;
+    }
+
+    public int CheckAmountToAdd(Item item, int a, out int overStackAmount)
+    {
+        if (!item.itemBase.isStackable)
+        {
+            overStackAmount = a;
+            return 1;
+        }
+
+        int amount = item.amount;
+        int maxStack = item.maxStack;
+        int control = amount + a;
+
+        if (control > maxStack)
+        {
+            overStackAmount = control - maxStack;
+            amount = maxStack;
+        }
+        else
+        {
+            amount += a;
+            overStackAmount = 0;
+        }
+        return amount;
+
+    }
+
+    public List<Item> GetItemList()
+    {
+        return itemList;
+    }
+
+    public void RemoveItemAmount(int a, out int additionalAmount)
+    {
+        //TODO Remove item Amount
+        throw new NotImplementedException();
+        /*int control = amount - a;
+        if (control < 0)
+        {
+            RemoveItem();
+            additionalAmount = -(amount - a);
+        }
+        else if (control == 0)
+        {
+            additionalAmount = 0;
+            RemoveItem();
+        }
+        else
+        {
+            additionalAmount = 0;
+            amount -= a;
+            dSlot.UpdateAmount();
+        }*/
+    }
+
+    private InventorySlot FindSlotWIthItem(Item it)
+    {
+        //TODO Find slot with Item
+        throw new NotImplementedException();
+    }
+
+    public Item FindItem(Item item)
+    {
+        foreach (Item it in itemList)
+        {
+            if (it == item) return it;
+        }
+        return null;
+    }
+    public void ChangeItemAmount(Item item, int a)
+    {
+        //TODO change item amount
     }
 }
 

@@ -2170,6 +2170,8 @@ MonoBehaviour:
     baseValue: 0
   jumpingGravity:
     baseValue: 0
+  armour:
+    baseValue: 0
 --- !u!114 &3762166898747691526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2200,6 +2202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory_UI: {fileID: 5303342174593718516}
   testItem: {fileID: 11400000, guid: 67d02cd848025ab2eb043fc0d38d667c, type: 2}
+  secondTestItem: {fileID: 11400000, guid: f2cfac923e14af8928f6b33cdfad4045, type: 2}
 --- !u!1 &2128459446445490345
 GameObject:
   m_ObjectHideFlags: 0
