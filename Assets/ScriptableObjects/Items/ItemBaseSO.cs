@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="ItemBaseSO", menuName = "Items/ItemBaseSO")]
+[CreateAssetMenu(fileName = "ItemBaseSO", menuName = "Items/ItemBaseSO")]
 public class ItemBaseSO : ScriptableObject
 {
-    public enum ItemType{
+    public enum ItemType
+    {
         baseItem,
         equipable,
         handable,
     }
-    
-    
+
+
     [Header("BaseSetting")]
     public string itemName;
     public string itemShortDescription;
@@ -19,7 +20,7 @@ public class ItemBaseSO : ScriptableObject
     public Sprite itemSprite;
     public ItemType itemType;
     public string itemID;
-    
+
     [Header("Equipable item setting")]
     public bool isEquipable;
 
@@ -37,13 +38,13 @@ public class ItemBaseSO : ScriptableObject
     /// 8 - health potion slot
     /// 9 - mana potion slot
     /// </summary>
-    public int specialSlotIndex; 
+    public int specialSlotIndex;
 
 
     [Header("Handable item setting")]
     public bool isHandable;
-    
-    
+
+
     [Header("Stackable item setting")]
     public bool isStackable = true;
     public int stackSize = 1;

@@ -134,20 +134,40 @@
       }
     },
     {
-      "name": "today group",
+      "name": "today",
       "documents": [
-        {
-          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/DraggableSlot.cs",
-          "column": 1,
-          "pinned": false
-        },
         {
           "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/Classes/Inventory.cs",
           "column": 1,
           "pinned": false
         },
         {
+          "fsPath": "/home/fedora/.config/Code/User/settings.json",
+          "column": 1,
+          "pinned": false
+        },
+        {
           "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/InventorySlot.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Inventory_UI.cs",
+          "column": 2,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Button_UI.cs",
+          "column": 2,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_inventory.cs",
+          "column": 2,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Mouse_DraggableItemFromInventory.cs",
           "column": 2,
           "pinned": false
         }
@@ -156,10 +176,10 @@
         "orientation": 0,
         "groups": [
           {
-            "size": 1429
+            "size": 694
           },
           {
-            "size": 518
+            "size": 1253
           }
         ]
       }

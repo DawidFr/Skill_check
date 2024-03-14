@@ -23,9 +23,9 @@ public class DraggableSlot : MonoBehaviour
         }
     }
 
-    internal void UpdateAmount()
+    public void UpdateAmount()
     {
-        currentItem.amount = 
+        //TODO update amount 
     }
 }
 
