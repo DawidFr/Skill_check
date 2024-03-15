@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Inventory {
+    public Action OnInventorySizeChange;
     public int inventorySize;
-    public List<Item> itemList;
+    public List<Item> itemList = new();
     public Inventory_UI inventoryUI;
     public Inventory(Inventory_UI inv, int invSize) //Inventory setup
     {
@@ -17,26 +19,38 @@ public class Inventory {
 
     public bool AddItem(Item item, bool stackWithOther = true) {
         if (itemList.Count == inventorySize) return false;
-        if (!item.itemBase.isStackable && !stackWithOther) {
+        if (!item.itemBase.isStackable || !stackWithOther) {
             FindEmptySlot().AddItem(item);
             itemList.Add(item);
             return true;
         }
-        int amountToAdd = item.amount;
-        int amountLeft;
-        foreach (Item it in itemList) {
-            if (it == item) {
-                if (it.amount != it.maxStack) {
+        else {
+            int amountToAdd = item.amount;
+            int amountLeft = amountToAdd;
+            foreach (Item it in itemList) {
+                if (it.itemBase == item.itemBase) {
+                    if (it.amount != it.maxStack) {
 
-                    it.amount = CheckAmountToAdd(it, amountToAdd, out int aLeft);
-                    InventorySlot slot = FindSlotWIthItem(it);
-                    slot.RefreshItemAmount(it.amount);
-                    amountLeft = aLeft;
-                    if (amountLeft == 0) break;
+                        it.amount = CheckAmountToAdd(it, amountToAdd, out int aLeft);
+                        InventorySlot slot = FindSlotWithItem(it);
+                        if (slot != null) {
+                            slot.RefreshItemAmount(it.amount);
+                        }
+                        else {
+                            Debug.Log("Slot is null");
+                            continue;
+                        }
+                        amountLeft = aLeft;
+                        if (amountLeft == 0) break;
+                    }
                 }
             }
+            if (amountLeft > 0) {
+                item.amount = amountLeft;
+                AddItem(item, false);
+            }
+            return true;
         }
-        return true;
     }
     public void RemoveItem(Item item) {
         // TODO remove item from inventory
@@ -44,7 +58,15 @@ public class Inventory {
     }
 
 
-
+    public void IncreaseInventoryCapacity(int amount) {
+        inventorySize += amount;
+        OnInventorySizeChange?.Invoke();
+    }
+    public void DecreesInventoryCapacity(int amount) {
+        inventorySize -= amount;
+        if (inventorySize <= 0) inventorySize = 1;
+        OnInventorySizeChange?.Invoke();
+    }
 
     public bool IsEnoughInInventory(Item item, int amountToCheck) {
         return GetItemInInventoryAmount(item) <= amountToCheck;
@@ -100,17 +122,14 @@ public class Inventory {
         throw new NotImplementedException();
     }
 
-    public int TryAddItemAmountToSlots() {
-        
-    }
 
 
     public int GetSpaceInInventory() {
         return inventorySize - itemList.Count;
     }
-    private List<InventorySlot> FindSlotsWithItemOfType(ItemBaseSO itemBase){
+    private List<InventorySlot> FindSlotsWithItemOfType(ItemBaseSO itemBase) {
         List<InventorySlot> slots = new();
-        foreach(InventorySlot slot in inventoryUI.slots){
+        foreach (InventorySlot slot in inventoryUI.slots) {
             if (slot.item.itemBase == itemBase) slots.Add(slot);
         }
         return slots;

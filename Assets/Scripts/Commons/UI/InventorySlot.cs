@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour {
+public class InventorySlot : MonoBehaviour{
     public Inventory inventory;
     public DraggableSlot itemSlotPF;
     public Item item;
@@ -22,6 +22,7 @@ public class InventorySlot : MonoBehaviour {
     }
     public void AddItem(Item it) {
         dSlot = Instantiate(itemSlotPF, this.transform).GetComponent<DraggableSlot>();
+        item = it;
         dSlot.Setup(item, this);
         isEmpty = false;
         isFull = (item.amount == item.maxStack);
@@ -32,8 +33,8 @@ public class InventorySlot : MonoBehaviour {
     }
 
     public void RefreshItemAmount(int amount) {
-        //TODO refresh inventory amount
-        throw new NotImplementedException();
+        item.amount = amount;
+        dSlot.UpdateAmount();
     }
 }
 //              For SEBASTIAN
