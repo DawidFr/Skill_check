@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Stats : MonoBehaviour
-{
-    public static Action<EquipableItemStats, EquipableItemStats> OnInventoryEquipmentChange;
+public class Player_Stats : MonoBehaviour {
+    public static Action<EquipableItemBase, EquipableItemBase> OnInventoryEquipmentChange;
     [SerializeField] private Player_MobilityStats base_Stats;
 
     [Header("Horizontal movement")]
@@ -22,8 +21,7 @@ public class Player_Stats : MonoBehaviour
 
     [Header("Statistics")]
     public Statistic armour;
-    private void Awake()
-    {
+    private void Awake() {
         maxSpeed.ChangeBaseValue(base_Stats.maxSpeed);
         maxAcceleration.ChangeBaseValue(base_Stats.maxAcceleration);
         maxAirAcceleration.ChangeBaseValue(base_Stats.maxAirAcceleration);
@@ -35,10 +33,8 @@ public class Player_Stats : MonoBehaviour
 
     }
 
-    private void RefreshStats(EquipableItemStats stats1, EquipableItemStats stats2)
-    {
-        if (stats1 != null)
-        {
+    private void RefreshStats(EquipableItemBase stats1, EquipableItemBase stats2) {
+        if (stats1 != null) {
             armour.RemoveModifier(stats1.armourBonus);
             armour.RemoveMultiplier(stats1.armourMultiplier);
         }

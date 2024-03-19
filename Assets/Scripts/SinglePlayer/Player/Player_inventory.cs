@@ -9,7 +9,8 @@ public class Player_inventory : MonoBehaviour {
     public Inventory_UI inventory_UI;
     public int inventorySize;
     public ItemBaseSO testItem;
-    public ItemBaseSO secondTestItem;
+    public EquipableItemBase secondTestItem;
+    public EquipableItemBase thirdTestItem;
     private void Start() {
         I = this;
         inventory = new(inventory_UI, inventorySize);
@@ -25,6 +26,8 @@ public class Player_inventory : MonoBehaviour {
         inventory.AddItem(item);
         Item item2 = new(secondTestItem, 1);
         inventory.AddItem(item2);
+        Item item3 = new(thirdTestItem, 1);
+        inventory.AddItem(item3);
     }
 
     private void RefreshStat() {

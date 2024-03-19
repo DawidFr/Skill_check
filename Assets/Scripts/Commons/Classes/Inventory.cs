@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -20,7 +21,7 @@ public class Inventory {
     public bool AddItem(Item item, bool stackWithOther = true) {
         if (itemList.Count == inventorySize) return false;
         if (!item.itemBase.isStackable || !stackWithOther) {
-            FindEmptySlot().AddItem(item);
+            GetEmptySlot().AddItem(item);
             itemList.Add(item);
             return true;
         }
@@ -100,7 +101,7 @@ public class Inventory {
         }
 
         int amount = item.amount;
-        int maxStack = item.maxStack;
+        int maxStack = item.itemBase.stackSize;
         int control = amount + a;
 
         if (control > maxStack) {
@@ -111,6 +112,8 @@ public class Inventory {
             amount += a;
             overStackAmount = 0;
         }
+        Debug.Log("overStackAmount = " + overStackAmount);
+        Debug.Log("amount = " + amount);
         return amount;
 
     }
@@ -122,7 +125,12 @@ public class Inventory {
         throw new NotImplementedException();
     }
 
-
+    public void RefreshItemList() {
+        itemList = new();
+        foreach (InventorySlot slot in inventoryUI.slots) {
+            if (!slot.isEmpty) itemList.Add(slot.item);
+        }
+    }
 
     public int GetSpaceInInventory() {
         return inventorySize - itemList.Count;
@@ -136,11 +144,12 @@ public class Inventory {
     }
     private InventorySlot FindSlotWithItem(Item it) {
         foreach (InventorySlot slot in inventoryUI.slots) {
+            if (slot.isEmpty) continue;
             if (slot.item == it) return slot;
         }
         return null;
     }
-    private InventorySlot FindEmptySlot() {
+    public InventorySlot GetEmptySlot() {
         foreach (InventorySlot invSlot in inventoryUI.slots) {
             if (invSlot.isEmpty) return invSlot;
         }

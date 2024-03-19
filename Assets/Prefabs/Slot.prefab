@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7943457521076790222}
   - component: {fileID: 7765851532392159266}
   - component: {fileID: 3420931008220924071}
-  - component: {fileID: 7664534820816250377}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -89,22 +88,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392bd875d8cf48f32b590a23cebabbfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseHandler: {fileID: 8626637143898630803, guid: 27fb476b3938e0fcb896e3f61ae2e234, type: 3}
   inventory:
     inventorySize: 0
+    itemList: []
     inventoryUI: {fileID: 0}
   itemSlotPF: {fileID: 5006620350884752089, guid: 027c778c87933575a84790967ed329f3, type: 3}
+  item:
+    itemBase: {fileID: 0}
+    itemSprite: {fileID: 0}
+    amount: 0
+    maxStack: 0
+    ID: 
   dSlot: {fileID: 0}
   isEmpty: 0
   isFull: 0
---- !u!114 &7664534820816250377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293772421850058870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3569c6ec7644b443585311546d2260f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

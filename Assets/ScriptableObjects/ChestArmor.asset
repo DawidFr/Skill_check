@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e47c76674c2d2c58c6b174f1675ef9, type: 3}
+  m_Name: ChestArmor
+  m_EditorClassIdentifier: 
+  itemName: Steel chest
+  itemShortDescription: 'Protect your heart '
+  itemLongDescription: Armor made by dwarfs inside living vulcano. Boost your armor
+    but slighty decrese speed
+  itemSprite: {fileID: 21300000, guid: 567fdd2e557fefc478f8aaa7ae56fb11, type: 3}
+  itemType: 1
+  itemID: 0003
+  isEquipable: 1
+  isHandable: 0
+  isStackable: 0
+  stackSize: 1
+  statsTXT: 'Armor: +10
+
+    Speed mult.: 0.9'
+  armourBonus: 10
+  speedBonus: 0
+  jumpHeightBonus: 0
+  armourMultiplier: 0
+  speedMultiplier: 0.9
+  jumpHeightMultiplier: 0
+  specialSlotIndex: 1
+  maxRarity: 2
+  minRarity: 7
+  multiplierPerRarityMultiplier:
+  - 1
+  - 1.2
+  - 1.35
+  - 1.5
+  - 1.6
+  - 1.75

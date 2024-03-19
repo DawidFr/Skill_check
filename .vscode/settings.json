@@ -142,7 +142,17 @@
           "pinned": false
         },
         {
-          "fsPath": "/home/fedora/.config/Code/User/settings.json",
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/Classes/Item.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Button_UI.cs",
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/DraggableSlot.cs",
           "column": 1,
           "pinned": false
         },
@@ -152,22 +162,32 @@
           "pinned": false
         },
         {
-          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Inventory_UI.cs",
-          "column": 2,
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/Namespaces/MyInput.cs",
+          "column": 1,
           "pinned": false
         },
         {
-          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Button_UI.cs",
-          "column": 2,
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/TestController.cs",
+          "column": 1,
           "pinned": false
         },
         {
           "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/SinglePlayer/Player/Player_inventory.cs",
-          "column": 2,
+          "column": 1,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Inventory_UI.cs",
+          "column": 1,
           "pinned": false
         },
         {
           "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/Mouse_DraggableItemFromInventory.cs",
+          "column": 2,
+          "pinned": false
+        },
+        {
+          "fsPath": "/home/fedora/Coding/Unity/GoMobile/Assets/Scripts/Commons/UI/DraggableSlot.cs",
           "column": 2,
           "pinned": false
         }
@@ -176,10 +196,10 @@
         "orientation": 0,
         "groups": [
           {
-            "size": 694
+            "size": 1107
           },
           {
-            "size": 1253
+            "size": 840
           }
         ]
       }
@@ -188,6 +208,7 @@
   "todo-tree.tree.showBadges": false,
   "cSpell.words": [
     "Cinemachine",
+    "debuff",
     "equipable",
     "Handable",
     "Raycasts",
@@ -196,5 +217,4 @@
     "Stackable",
     "UGUI"
   ]
-
 }

@@ -19,9 +19,23 @@ MonoBehaviour:
   itemType: 1
   itemID: 0002
   isEquipable: 1
-  specialSlotIndex: 0
   isHandable: 0
-  isStackable: 1
+  isStackable: 0
   stackSize: 1
-  armourBonus: 10
+  statsTXT: 'Armor: +5
+
+    Speed: +1
+
+    Speed: 0.9'
+  armourBonus: 5
+  speedBonus: 1
+  jumpHeightBonus: 0
   armourMultiplier: 0
+  speedMultiplier: 0.9
+  jumpHeightMultiplier: 0
+  specialSlotIndex: 0
+  maxRarity: 4
+  minRarity: 5
+  multiplierPerRarityMultiplier:
+  - 1
+  - 1.2

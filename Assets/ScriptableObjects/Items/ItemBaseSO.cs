@@ -26,19 +26,7 @@ public class ItemBaseSO : ScriptableObject
 
     [Header("Special slot equipable item setting")]
 
-    /// <summary>
-    /// 0 - headSlot
-    /// 1 - chest slot
-    /// 2 - leg slot
-    /// 3 - bag slot
-    /// 4 - belt slot  
-    /// 5 - rune slot
-    /// 6 - special book slot
-    /// 7 - food slot 
-    /// 8 - health potion slot
-    /// 9 - mana potion slot
-    /// </summary>
-    public int specialSlotIndex;
+
 
 
     [Header("Handable item setting")]
@@ -48,6 +36,4 @@ public class ItemBaseSO : ScriptableObject
     [Header("Stackable item setting")]
     public bool isStackable = true;
     public int stackSize = 1;
-
-
 }
